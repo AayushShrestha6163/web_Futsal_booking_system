@@ -10,7 +10,7 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(160, 34, 34, 0.8);
+  background: rgba(147, 209, 105, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
