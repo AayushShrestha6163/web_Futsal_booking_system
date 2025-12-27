@@ -76,7 +76,7 @@ export default function SignupForm() {
         <input
           {...register("email")}
           type="email"
-          placeholder="aayush@email.com"
+          placeholder="aayush123@email.com"
           className="w-full bg-transparent border-b border-purple-500/50 
           focus:border-purple-500 outline-none text-white py-2"
         />
