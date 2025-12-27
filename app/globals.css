@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* Global CSS variables */
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+  }
+}
+
+/* Base body styles (safe for Tailwind) */
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom utility for diagonal panel */
+.clip-diagonal {
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+}
