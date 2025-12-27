@@ -14,7 +14,7 @@ export default function Page() {
         
         <div className="absolute right-0 top-0 h-full w-[55%] bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900 clip-diagonal flex items-center justify-center text-center px-10">
           <div>
-            <h2 className="text-4xl font-bold text-white">WELCOME BACK</h2>
+            <h2 className="text-4xl font-bold text-white">WELCOME BACK!</h2>
             <p className="mt-4 text-sm text-purple-100/80">
               Register with your personal details to use all of site features.
             </p>
