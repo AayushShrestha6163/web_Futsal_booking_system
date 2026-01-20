@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { loginSchema, type LoginData } from "../schema";
+import { login } from "@/lib/api/auth";
+import { handleLogin } from "@/lib/actions/auth-actions";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -21,7 +23,7 @@ export default function LoginForm() {
 
   const submit = async (values: LoginData) => {
     startTransition(async () => {
-      await new Promise((r) => setTimeout(r, 1000));
+      await handleLogin(values as LoginData);
       router.push("/dashboard");
     });
 

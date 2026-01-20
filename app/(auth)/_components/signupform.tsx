@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTransition, useState } from "react";
 import { registerSchema, type RegisterData } from "../schema";
+import { register as backendRegister } from "../../../lib/api/auth";
+import { handleRegister } from "@/lib/actions/auth-actions";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -22,12 +24,11 @@ export default function SignupForm() {
 
   const submit = async (values: RegisterData) => {
     startTransition(async () => {
-      await new Promise((r) => setTimeout(r, 1000));
+      const res = await handleRegister(values as RegisterData)
+      console.log(res)
       setSuccess(true);
-      setTimeout(() => router.push("login"), 2000);
+      router.push("/login");
     });
-
-    console.log("signup", values);
   };
 
   if (success) {
