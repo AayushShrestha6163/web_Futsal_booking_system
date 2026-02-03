@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { loginSchema, type LoginData } from "../schema";
 import { login } from "@/lib/api/auth";
 import { handleLogin } from "@/lib/actions/auth-actions";
@@ -11,6 +11,7 @@ import { handleLogin } from "@/lib/actions/auth-actions";
 export default function LoginForm() {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -23,15 +24,35 @@ export default function LoginForm() {
 
   const submit = async (values: LoginData) => {
     startTransition(async () => {
-      await handleLogin(values as LoginData);
-      router.push("/dashboard");
-    });
+            try {
+                const response = await handleLogin(values);
+                if (!response.success) {
+                    throw new Error(response.message);
+                }
+                if (response.success) {
+                    if (response.data?.role == 'admin') {
+                        return router.replace("/admin");
+                    }
+                    if (response.data?.role === 'user') {
+                        return router.replace("/dashboard");
+                    }
+                    return router.replace("/");
+                } else {
+                    setError('Login failed');
+                }
+            } catch (err: Error | any) {
+                setError(err.message || 'Login failed');
+            }
+        })
 
     console.log("login", values);
   };
 
   return (
     <form onSubmit={handleSubmit(submit)} className="space-y-5">
+       {error && (
+                <p className="text-sm text-red-600">{error}</p>
+            )}
 
      
       <div>
