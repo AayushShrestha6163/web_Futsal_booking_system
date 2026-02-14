@@ -174,7 +174,7 @@
 .landing-hero {
   position: relative;
   padding: 6rem 1.5rem 4rem;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  background: linear-gradient(135deg, #448a59 0%, #dcfce7 100%);
   overflow: hidden;
 }
 
@@ -358,7 +358,7 @@
 
 .service-card {
   padding: 2rem;
-  background: white;
+  background: rgb(48, 56, 50);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   transition: all 0.3s;
@@ -395,7 +395,7 @@
 /* About Section */
 .landing-about {
   padding: 5rem 1.5rem;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  background: linear-gradient(135deg, #75b689 0%, #dcfce7 100%);
 }
 
 .about-container {
@@ -437,7 +437,7 @@
 
 .stat-card {
   padding: 2rem;
-  background: white;
+  background: rgb(121, 223, 184);
   border-radius: var(--radius-xl);
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
