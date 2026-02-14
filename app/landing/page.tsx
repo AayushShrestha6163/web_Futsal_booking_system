@@ -238,7 +238,7 @@ export default function Landing() {
             </div>
             <div className="footer-col">
               <h4 className="footer-heading">Contact</h4>
-              <p className="footer-text">+977-1-4567890</p>
+              <p className="footer-text">+977-9861637799</p>
               <p className="footer-text">info@khelmaidan.np</p>
             </div>
           </div>
