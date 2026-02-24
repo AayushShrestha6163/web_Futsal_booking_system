@@ -16,6 +16,16 @@ export default function CourtsPage() {
   const [error, setError] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
 
+  // ✅ Pagination
+  const [page, setPage] = useState(1);
+  const limit = 4; 
+  const [pagination, setPagination] = useState({
+    total: 0,
+    totalPages: 1,
+    page: 1,
+    limit,
+  });
+
   // ✅ Delete Modal state
   const [isDeleteOpen, setIsDeleteOpen] = useState<null | boolean>(null);
   const [selectedCourtId, setSelectedCourtId] = useState<string | null>(null);
@@ -32,8 +42,16 @@ export default function CourtsPage() {
   const load = async () => {
     try {
       setError("");
-      const data = await getAdminCourts();
+      const data = await getAdminCourts(page, limit);
       setCourts(data.courts || []);
+      setPagination(
+        data.pagination || {
+          total: 0,
+          totalPages: 1,
+          page,
+          limit,
+        }
+      );
     } catch (e: any) {
       setError(e?.message || "Failed to load courts");
     }
@@ -41,7 +59,8 @@ export default function CourtsPage() {
 
   useEffect(() => {
     load();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   const resetForm = () => {
     setEditingId(null);
@@ -64,8 +83,12 @@ export default function CourtsPage() {
       } else {
         await createAdminCourt(form);
       }
-      await load();
+
       resetForm();
+
+      // ✅ after create/update go to page 1 so user sees it
+      setPage(1);
+      await load();
     } catch (e: any) {
       setError(e?.message || "Failed");
     }
@@ -83,7 +106,6 @@ export default function CourtsPage() {
     });
   };
 
-  // ✅ open modal instead of confirm()
   const openDeleteModal = (id: string) => {
     setSelectedCourtId(id);
     setIsDeleteOpen(true);
@@ -100,6 +122,11 @@ export default function CourtsPage() {
     try {
       setError("");
       await deleteAdminCourt(selectedCourtId);
+
+      // ✅ if last item deleted on last page, move back a page
+      const willBeEmpty = courts.length === 1 && page > 1;
+      if (willBeEmpty) setPage((p) => p - 1);
+
       await load();
       closeDeleteModal();
     } catch (e: any) {
@@ -107,6 +134,8 @@ export default function CourtsPage() {
       closeDeleteModal();
     }
   };
+
+  const totalPages = pagination.totalPages || 1;
 
   return (
     <div className="p-6 space-y-6">
@@ -208,7 +237,7 @@ export default function CourtsPage() {
         </div>
       </form>
 
-      <div className="border rounded-lg">
+      <div className="border rounded-lg overflow-hidden">
         <div className="p-4 border-b font-medium">All Courts</div>
 
         <div className="divide-y">
@@ -216,10 +245,7 @@ export default function CourtsPage() {
             <div className="p-4 text-sm">No courts yet.</div>
           ) : (
             courts.map((c) => (
-              <div
-                key={c._id}
-                className="p-4 text-sm flex justify-between gap-4"
-              >
+              <div key={c._id} className="p-4 text-sm flex justify-between gap-4">
                 <div className="flex gap-3">
                   <div className="w-20 h-14 rounded overflow-hidden border bg-black/5">
                     {c.image ? (
@@ -238,8 +264,7 @@ export default function CourtsPage() {
                   <div>
                     <div className="font-medium">{c.name}</div>
                     <div className="opacity-70">
-                      {c.location} • Rs {c.pricePerHour}/hr • {c.openingTime}-
-                      {c.closingTime}
+                      {c.location} • Rs {c.pricePerHour}/hr • {c.openingTime}-{c.closingTime}
                     </div>
                   </div>
                 </div>
@@ -252,7 +277,7 @@ export default function CourtsPage() {
                     Edit
                   </button>
                   <button
-                    onClick={() => openDeleteModal(c._id)} // ✅ open modal
+                    onClick={() => openDeleteModal(c._id)}
                     className="border px-3 py-2 rounded hover:bg-red-50 text-red-600"
                   >
                     Delete
@@ -262,9 +287,33 @@ export default function CourtsPage() {
             ))
           )}
         </div>
+
+        {/* ✅ Pagination footer */}
+        <div className="flex items-center justify-between p-4 border-t border-white/10">
+          <div className="text-sm opacity-70">
+            Page {page} of {totalPages}
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              disabled={page <= 1}
+              onClick={() => setPage((p) => p - 1)}
+              className="border px-3 py-2 rounded disabled:opacity-40"
+            >
+              Previous
+            </button>
+
+            <button
+              disabled={page >= totalPages}
+              onClick={() => setPage((p) => p + 1)}
+              className="border px-3 py-2 rounded disabled:opacity-40"
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* ✅ Reuse same DeleteModal UI (no change) */}
       <DeleteModal
         isOpen={isDeleteOpen}
         onClose={closeDeleteModal}

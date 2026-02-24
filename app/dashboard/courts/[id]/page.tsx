@@ -42,7 +42,6 @@ export default async function CourtDetailsPage({
     process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
   const imgUrl = court?.image ? `${base}/uploads/${court.image}` : null;
 
-  // ✅ Server Action: create booking then go to payment page
   async function bookAndGoToPayment(formData: FormData) {
     "use server";
 
@@ -75,10 +74,8 @@ export default async function CourtDetailsPage({
         );
       }
 
-      // ✅ IMPORTANT: redirect throws NEXT_REDIRECT (must not be caught)
       redirect(`/pay/esewa?bookingId=${bookingId}`);
     } catch (e: any) {
-      // ✅ Let Next.js redirect work
       if (e?.digest?.includes("NEXT_REDIRECT")) throw e;
 
       redirect(
@@ -99,7 +96,6 @@ export default async function CourtDetailsPage({
           ← Back to Courts
         </Link>
 
-        {/* optional error banner */}
         {sp?.error && sp.error !== "NEXT_REDIRECT" && (
           <div className="mt-4 bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded">
             {decodeURIComponent(sp.error)}
@@ -107,15 +103,22 @@ export default async function CourtDetailsPage({
         )}
 
         <div className="mt-6 bg-white border border-emerald-100 rounded-xl shadow overflow-hidden">
-          <div className="h-64 bg-emerald-100">
+
+          {/* ✅ FIXED IMAGE FRAME */}
+          <div className="w-full bg-white flex items-center justify-center p-6">
             {imgUrl ? (
-              <img
-                src={imgUrl}
-                alt={court?.name || "Court"}
-                className="w-full h-full object-cover"
-              />
+              <div className="w-full max-w-4xl h-80 sm:h-96 bg-white border border-emerald-100 rounded-xl overflow-hidden flex items-center justify-center">
+                <img
+                  src={imgUrl}
+                  alt={court?.name || "Court"}
+                  className="max-w-full max-h-full object-contain block"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
+              </div>
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-slate-600">
+              <div className="h-64 w-full flex items-center justify-center text-slate-600">
                 No Image
               </div>
             )}
@@ -128,7 +131,7 @@ export default async function CourtDetailsPage({
               Rs {court?.pricePerHour}/hr
             </p>
 
-            {/* Date filter */}
+            {/* Date Filter */}
             <div className="mt-6">
               <form method="GET">
                 <label className="block text-sm font-semibold mb-2">
@@ -154,7 +157,9 @@ export default async function CourtDetailsPage({
               <h2 className="font-bold mb-3">Available Slots</h2>
 
               {slots.length === 0 ? (
-                <p className="text-slate-600">No slots found for this date.</p>
+                <p className="text-slate-600">
+                  No slots found for this date.
+                </p>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {slots.map((s: any, idx: number) => {
@@ -162,7 +167,8 @@ export default async function CourtDetailsPage({
                     const [rawStart, rawEnd] = timeStr.split("-");
                     const startTime = rawStart?.trim();
                     const endTime = rawEnd?.trim();
-                    const canBook = Boolean(s?.available) && startTime && endTime;
+                    const canBook =
+                      Boolean(s?.available) && startTime && endTime;
 
                     return (
                       <form
@@ -172,13 +178,16 @@ export default async function CourtDetailsPage({
                       >
                         <div className="font-semibold">{timeStr}</div>
 
-                        {/* ✅ Hidden inputs submitted to server action */}
                         <input
                           type="hidden"
                           name="startTime"
                           value={startTime}
                         />
-                        <input type="hidden" name="endTime" value={endTime} />
+                        <input
+                          type="hidden"
+                          name="endTime"
+                          value={endTime}
+                        />
 
                         <button
                           type="submit"
@@ -197,6 +206,7 @@ export default async function CourtDetailsPage({
                 </div>
               )}
             </div>
+
           </div>
         </div>
       </div>

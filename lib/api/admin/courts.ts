@@ -1,8 +1,10 @@
 import axiosInstance from "../axios";
 import { API } from "../endpoints";
 
-export const getAdminCourts = async () => {
-  const res = await axiosInstance.get(API.ADMIN.COURTS);
+export const getAdminCourts = async (page = 1, limit = 6) => {
+  const res = await axiosInstance.get(API.ADMIN.COURTS, {
+    params: { page, limit },
+  });
   return res.data;
 };
 

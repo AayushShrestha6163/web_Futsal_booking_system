@@ -1,6 +1,7 @@
 import { AuthProvider } from "@/context/AuthContext";
 import Header from "./_components/Header";
 import Sidebar from "./_components/Sidebar";
+import "./admin.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
