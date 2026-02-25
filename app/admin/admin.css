@@ -487,3 +487,33 @@ header button.border:hover {
   background: rgba(255,255,255,0.08) !important;
   transform: translateY(-1px);
 }
+
+/* ===== FINAL VISIBILITY FIX ===== */
+
+/* Remove ugly blue browser selection */
+::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: #ffffff;
+}
+*::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: #ffffff;
+}
+
+/* Force readable text inside admin area */
+.page-wrapper,
+.page-wrapper * {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Make table text fully visible */
+.page-wrapper table,
+.page-wrapper th,
+.page-wrapper td {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Fix header contrast */
+.page-wrapper thead th {
+  color: rgba(255, 255, 255, 0.85) !important;
+}

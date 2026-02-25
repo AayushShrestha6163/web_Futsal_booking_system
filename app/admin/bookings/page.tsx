@@ -93,7 +93,7 @@ export default function BookingsPage() {
 
         <button
           onClick={() => load()}
-          className="border px-3 py-2 rounded-lg hover:bg-white/5 transition"
+          className="border border-emerald-400/40 text-emerald-300 px-3 py-2 rounded-lg hover:bg-emerald-400/10 hover:text-emerald-200 transition"
         >
           Refresh
         </button>
