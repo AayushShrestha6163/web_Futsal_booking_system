@@ -60,9 +60,9 @@ export default function DashboardClient({ upcomingBookings, success, error }: { 
               Find Courts
             </Link>
 
-            <button className="border border-emerald-200 text-slate-700 px-3 py-1 rounded flex items-center gap-2 hover:border-emerald-400 hover:text-emerald-700">
-              <User className="w-4 h-4" /> Profile
-            </button>
+            <Link href="/user/profile" className="...">
+  <User className="w-4 h-4" /> Profile
+</Link>
 
             <button className="text-red-600 flex items-center gap-2 hover:text-red-700">
               <LogOut className="w-4 h-4" />

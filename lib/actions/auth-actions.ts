@@ -45,9 +45,9 @@ export const handleLogin = async (data: LoginData) => {
 }
 
 export const handleLogout = async () => {
-    await clearAuthCookies();
-    return redirect('/login');
-}
+  await clearAuthCookies();
+  return redirect("/dashboard"); // go back to dashboard
+};
 export async function handleUpdateProfile(profileData: FormData) {
     try {
         const result = await updateProfile(profileData);
