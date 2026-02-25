@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { handleLogout } from "@/lib/actions/auth-actions";
+import { logoutAction } from "@/lib/actions/auth-actions";
 
 export default async function ProfilePage() {
   const cookieStore = await cookies();
@@ -76,7 +76,7 @@ export default async function ProfilePage() {
             </Link>
 
             {/* Logout (server action) */}
-            <form action={handleLogout}>
+            <form action={logoutAction}>
               <button
                 type="submit"
                 className="px-4 py-2 rounded-xl bg-slate-900 text-white font-semibold hover:opacity-90"

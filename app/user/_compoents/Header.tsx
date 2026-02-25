@@ -1,6 +1,6 @@
 "use client";
 
-import { handleLogout } from "@/lib/actions/auth-actions";
+import { logoutAction } from "@/lib/actions/auth-actions";
 // import ThemeToggle from "@/app/_components/ThemeToggle";
 
 import Link from "next/link";
@@ -43,7 +43,7 @@ export default function Header() {
                     <div className="flex items-center gap-2 md:justify-self-end">
                         <div className="hidden sm:flex items-center gap-2">
                             <button
-                                onClick={handleLogout}
+                                onClick={logoutAction}
                                 className="h-9 px-3 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/15 text-sm font-medium hover:bg-foreground/5 transition-colors"
                             >
                                 Logout
@@ -82,7 +82,7 @@ export default function Header() {
                         <div className="flex flex-col gap-2">
                             <div className="mt-2 flex items-center gap-2">
                                 <button
-                                    onClick={handleLogout}
+                                    onClick={logoutAction}
                                     className="flex-1 h-9 px-3 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/15 text-sm font-medium hover:bg-foreground/5 transition-colors"
                                 >
                                     Logout

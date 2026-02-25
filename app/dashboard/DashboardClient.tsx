@@ -6,6 +6,7 @@ import { useState } from "react";
 import "@/app/styles/dashboard.css";
 import { useRouter } from "next/navigation";
 import { cancelBookingAction } from "../../lib/actions/booking-actions";
+import { useAuth } from "@/context/AuthContext"; // ✅ add
 
 type Booking = {
   _id: string;
@@ -14,12 +15,21 @@ type Booking = {
   startTime: string;
   endTime: string;
   status?: string;
-  paymentStatus?: string; // optional if you have it
+  paymentStatus?: string;
 };
 
-export default function DashboardClient({ upcomingBookings, success, error }: { upcomingBookings: Booking[], success?: string, error?: string; }) {
+export default function DashboardClient({
+  upcomingBookings,
+  success,
+  error,
+}: {
+  upcomingBookings: Booking[];
+  success?: string;
+  error?: string;
+}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
+  const { logout } = useAuth(); // ✅ add
 
   const stats = [
     { label: "Total Bookings", value: String(upcomingBookings.length), icon: Calendar, color: "text-green-600" },
@@ -34,7 +44,7 @@ export default function DashboardClient({ upcomingBookings, success, error }: { 
 
     try {
       await cancelBookingAction(bookingId);
-      router.refresh(); // ✅ refresh server data
+      router.refresh();
     } catch (err: any) {
       alert(err?.message || "Cancel failed");
     }
@@ -60,15 +70,18 @@ export default function DashboardClient({ upcomingBookings, success, error }: { 
               Find Courts
             </Link>
 
-            <Link href="/user/profile" className="...">
-  <User className="w-4 h-4" /> Profile
-</Link>
+            <Link href="/user/profile" className="text-slate-600 hover:text-emerald-700 flex items-center gap-2">
+              <User className="w-4 h-4" /> Profile
+            </Link>
 
-            <button className="text-red-600 flex items-center gap-2 hover:text-red-700">
+            {/* ✅ REAL LOGOUT */}
+            <button
+              type="button"
+              onClick={logout}
+              className="text-red-600 flex items-center gap-2 hover:text-red-700"
+            >
               <LogOut className="w-4 h-4" />
-              <Link href="/register" className="text-red-600 hover:underline cursor-pointer">
-                LogOut
-              </Link>
+              Logout
             </button>
           </nav>
 
@@ -88,22 +101,32 @@ export default function DashboardClient({ upcomingBookings, success, error }: { 
             <Link href="/dashboard/courts" className="block p-2 text-slate-700 hover:text-emerald-700">
               Find Courts
             </Link>
+
+            {/* ✅ mobile logout too */}
+            <button
+              type="button"
+              onClick={logout}
+              className="block w-full text-left p-2 text-red-600 hover:text-red-700"
+            >
+              Logout
+            </button>
           </div>
         )}
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         {success && (
-  <div className="mb-6 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded">
-    Booking successful 🎉
-  </div>
-)}
+          <div className="mb-6 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded">
+            Booking successful 🎉
+          </div>
+        )}
 
-{error && error !== "NEXT_REDIRECT" && (
-  <div className="mb-6 bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded">
-    {decodeURIComponent(error)}
-  </div>
-)}
+        {error && error !== "NEXT_REDIRECT" && (
+          <div className="mb-6 bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded">
+            {decodeURIComponent(error)}
+          </div>
+        )}
+
         <h1 className="text-3xl font-bold text-slate-900 mb-2">Welcome back, Player!</h1>
         <p className="text-slate-600 mb-6">Ready to book your next game?</p>
 
@@ -137,7 +160,7 @@ export default function DashboardClient({ upcomingBookings, success, error }: { 
               >
                 <div>
                   <h3 className="font-semibold text-slate-900">
-                    {(b.court?.name || "Court")}
+                    {b.court?.name || "Court"}
                     {b.court?.location ? ` - ${b.court.location}` : ""}
                   </h3>
                   <p className="text-sm text-slate-600">{b.date}</p>
