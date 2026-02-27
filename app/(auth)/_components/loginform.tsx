@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { handleLogin } from "@/lib/actions/auth-actions";
+import Link from "next/link";
 
 export default function LoginForm() {
   const sp = useSearchParams();
@@ -9,8 +10,13 @@ export default function LoginForm() {
 
   return (
     <form action={handleLogin} className="space-y-5">
-      {error && <p className="text-sm text-red-600">{decodeURIComponent(error)}</p>}
+      {error && (
+        <p className="text-sm text-red-500">
+          {decodeURIComponent(error)}
+        </p>
+      )}
 
+      {/* Email */}
       <div>
         <label className="block text-sm text-white/70 mb-1">Email</label>
         <input
@@ -23,6 +29,7 @@ export default function LoginForm() {
         />
       </div>
 
+      {/* Password */}
       <div>
         <label className="block text-sm text-white/70 mb-1">Password</label>
         <input
@@ -35,6 +42,17 @@ export default function LoginForm() {
         />
       </div>
 
+      {/* ✅ Forgot password link */}
+      <div className="text-right -mt-2">
+        <Link
+          href="/request-password-reset"
+          className="text-xs text-purple-400 hover:text-purple-300 hover:underline transition"
+        >
+          Forgot password?
+        </Link>
+      </div>
+
+      {/* Button */}
       <button
         type="submit"
         className="w-full py-2 rounded-full 

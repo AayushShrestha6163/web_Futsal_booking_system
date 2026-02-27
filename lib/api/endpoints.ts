@@ -14,23 +14,23 @@ export const API = {
     UPDATE: (email: string) => `/api/admin/users/${email}`,
     DELETE: (userId: string) => `/api/admin/users/${userId}`,
 
-    // ✅ COURTS (admin)
+
     COURTS: "/api/admin/courts",
     COURT_UPDATE: (id: string) => `/api/admin/courts/${id}`,
     COURT_DELETE: (id: string) => `/api/admin/courts/${id}`,
 
-    // ✅ BOOKINGS (admin) - only if you add backend route
+    
     BOOKINGS: "/api/admin/bookings",
   },
 
-  // ✅ BOOKINGS (user)
+  
   BOOKINGS: {
     CREATE: "/api/bookings",
     ME: "/api/bookings/me",
     CANCEL: (id: string) => `/api/bookings/${id}`,
   },
 
-  // ✅ PAYMENTS (eSewa)
+ 
   PAYMENTS: {
     ESEWA_INITIATE: "/api/payments/esewa/initiate",
   },

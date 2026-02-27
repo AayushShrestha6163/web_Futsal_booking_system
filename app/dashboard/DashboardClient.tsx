@@ -6,7 +6,7 @@ import { useState } from "react";
 import "@/app/styles/dashboard.css";
 import { useRouter } from "next/navigation";
 import { cancelBookingAction } from "../../lib/actions/booking-actions";
-import { useAuth } from "@/context/AuthContext"; // ✅ add
+import { useAuth } from "@/context/AuthContext"; 
 
 type Booking = {
   _id: string;
@@ -29,7 +29,7 @@ export default function DashboardClient({
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
-  const { logout } = useAuth(); // ✅ add
+  const { logout } = useAuth(); 
 
   const stats = [
     { label: "Total Bookings", value: String(upcomingBookings.length), icon: Calendar, color: "text-green-600" },
@@ -74,7 +74,7 @@ export default function DashboardClient({
               <User className="w-4 h-4" /> Profile
             </Link>
 
-            {/* ✅ REAL LOGOUT */}
+            
             <button
               type="button"
               onClick={logout}
@@ -102,7 +102,7 @@ export default function DashboardClient({
               Find Courts
             </Link>
 
-            {/* ✅ mobile logout too */}
+            
             <button
               type="button"
               onClick={logout}

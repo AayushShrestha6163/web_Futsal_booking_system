@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
-import { AuthProvider } from "@/context/AuthContext"; // ✅ add
+import { AuthProvider } from "@/context/AuthContext"; 
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* ✅ wrap whole app so useAuth works everywhere */}
+        
         <AuthProvider>
           {children}
         </AuthProvider>

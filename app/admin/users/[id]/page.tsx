@@ -20,7 +20,7 @@ export default async function Page({
                 
                 <p><strong>Email:</strong> {response.data.email}</p>
                 <p><strong>Role:</strong> {response.data.role}</p>
-                {/* Add more user details as needed */}
+                
             </div>
         </div>
     );

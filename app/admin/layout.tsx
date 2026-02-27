@@ -10,10 +10,10 @@ export const revalidate = 0;
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const user = await getUserData();
 
-  // not logged in
+
   if (!user) redirect("/login");
 
-  // not admin
+
   if (user.role !== "admin") redirect("/dashboard");
 
   return (

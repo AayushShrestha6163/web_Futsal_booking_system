@@ -11,12 +11,12 @@ interface UserData {
   [key: string]: any;
 }
 
-// ✅ Always use same options for set + delete
+
 const COOKIE_OPTIONS = {
-  path: "/", // 🔥 important for reliable logout
+  path: "/", 
   httpOnly: true,
   sameSite: "lax" as const,
-  // secure: true, // enable in production (https)
+  
 };
 
 export const setAuthToken = async (token: string) => {
@@ -51,7 +51,6 @@ export const getUserData = async (): Promise<UserData | null> => {
 export const clearAuthCookies = async () => {
   const cookieStore = await cookies();
 
-  // ✅ Don’t rely on delete() only — overwrite with maxAge 0
   cookieStore.set({
     name: "auth_token",
     value: "",

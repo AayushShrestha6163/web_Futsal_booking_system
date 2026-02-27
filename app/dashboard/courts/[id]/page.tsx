@@ -104,7 +104,7 @@ export default async function CourtDetailsPage({
 
         <div className="mt-6 bg-white border border-emerald-100 rounded-xl shadow overflow-hidden">
 
-          {/* ✅ FIXED IMAGE FRAME */}
+          
           <div className="w-full bg-white flex items-center justify-center p-6">
             {imgUrl ? (
               <div className="w-full max-w-4xl h-80 sm:h-96 bg-white border border-emerald-100 rounded-xl overflow-hidden flex items-center justify-center">

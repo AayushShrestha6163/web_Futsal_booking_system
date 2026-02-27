@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
-/* Global CSS variables */
+
 :root {
   --background: #000000;
   --foreground: #ffffff;
 }
 
-/* Dark mode preference */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #000000;
@@ -14,14 +14,30 @@
   }
 }
 
-/* Base body styles (safe for Tailwind) */
+
 body {
   margin: 0;
   background-color: var(--background);
   color: var(--foreground);
 }
 
-/* Custom utility for diagonal panel */
+
 .clip-diagonal {
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff !important; 
+  caret-color: #ffffff !important;            
+  box-shadow: 0 0 0 1000px #170a2c inset !important; 
+  transition: background-color 999999s ease-in-out 0s; 
 }

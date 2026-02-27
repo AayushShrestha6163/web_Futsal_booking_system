@@ -8,7 +8,7 @@ export default function BookingsPage() {
   const [bookings, setBookings] = useState<any[]>([]);
   const [error, setError] = useState("");
 
-  // ✅ Pagination
+
   const [page, setPage] = useState(1);
   const limit = 6; 
   const [pagination, setPagination] = useState({
@@ -37,10 +37,10 @@ export default function BookingsPage() {
     }
   };
 
-  // ✅ load on page change
+  
   useEffect(() => {
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [page]);
 
   const payEsewa = async (bookingId: string) => {
@@ -190,7 +190,7 @@ export default function BookingsPage() {
               </table>
             </div>
 
-            {/* ✅ Pagination footer (like users) */}
+            
             <div className="flex items-center justify-between p-4">
               <div className="text-sm opacity-70">
                 Page {page} of {totalPages}

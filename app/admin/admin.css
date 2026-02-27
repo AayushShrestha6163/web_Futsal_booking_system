@@ -1,7 +1,5 @@
-/* ===== Courts Page UI upgrade (no TSX changes) ===== */
+/* ===== Courts Page UI  */
 
-/* Page background feel (works if body is dark already too) */
-/* apply background only for admin area */
 .page-wrapper {
   background: radial-gradient(900px 500px at 20% 10%, rgba(99,102,241,.18), transparent 55%),
               radial-gradient(800px 450px at 80% 15%, rgba(34,211,238,.14), transparent 55%),
@@ -9,27 +7,27 @@
               #06070a;
 }
 
-/* Main container (your top div: p-6 space-y-6) */
+
 .p-6.space-y-6 {
   max-width: 1100px;
   margin: 0 auto;
   padding: 28px !important;
 }
 
-/* Page title */
+
 .p-6.space-y-6 > h1.text-xl.font-semibold {
   font-size: 26px;
   letter-spacing: .2px;
 }
 
-/* Error box */
+
 .border.rounded.p-3.text-sm.text-red-600 {
   background: rgba(239, 68, 68, 0.08);
   border-color: rgba(239, 68, 68, 0.25) !important;
   color: rgba(255, 180, 180, 0.95) !important;
 }
 
-/* Form card */
+
 form.border.rounded-lg.p-4.space-y-3 {
   background: rgba(255,255,255,0.04);
   border-color: rgba(255,255,255,0.10) !important;
@@ -39,14 +37,14 @@ form.border.rounded-lg.p-4.space-y-3 {
   backdrop-filter: blur(12px);
 }
 
-/* Form header (Add Court / Edit Court) */
+
 form .font-medium {
   font-size: 14px;
   color: rgba(255,255,255,.78);
   padding-bottom: 6px;
 }
 
-/* Inputs */
+
 input.border.p-2.rounded,
 input[type="file"].border.p-2.rounded.w-full {
   background: rgba(255,255,255,0.03) !important;
@@ -68,7 +66,7 @@ input[type="file"].border.p-2.rounded.w-full:focus {
   box-shadow: 0 0 0 3px rgba(34,211,238,0.12);
 }
 
-/* File label + hint */
+
 label.text-sm.opacity-80 {
   color: rgba(255,255,255,0.70) !important;
 }
@@ -76,7 +74,7 @@ label.text-sm.opacity-80 {
   color: rgba(255,255,255,0.55) !important;
 }
 
-/* Buttons base (Edit/Update/Add/Cancel) */
+
 button.border.px-4.py-2.rounded,
 button.border.px-3.py-2.rounded {
   border-color: rgba(255,255,255,0.14) !important;
@@ -92,14 +90,14 @@ button.border.px-3.py-2.rounded:hover {
   transform: translateY(-1px);
 }
 
-/* Primary button (first button in form row) */
+
 form .flex.gap-2 > button:first-child {
   background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(99,102,241,0.18));
   border-color: rgba(34,211,238,0.30) !important;
   box-shadow: 0 10px 24px rgba(34,211,238,0.10);
 }
 
-/* Delete button */
+
 button.hover\:bg-red-50.text-red-600 {
   color: rgba(255, 120, 120, 0.95) !important;
   border-color: rgba(239,68,68,0.28) !important;
@@ -111,8 +109,6 @@ button.hover\:bg-red-50.text-red-600:hover {
   transform: translateY(-1px);
 }
 
-/* All Courts wrapper */
-/* All Courts wrapper ONLY (the list container after the form) */
 .p-6.space-y-6 > .border.rounded-lg:not(form) {
   background: rgba(255,255,255,0.04);
   border-color: rgba(255,255,255,0.10) !important;
@@ -122,13 +118,12 @@ button.hover\:bg-red-50.text-red-600:hover {
   backdrop-filter: blur(12px);
 }
 
-/* All Courts header row */
 .p-4.border-b.font-medium {
   border-bottom-color: rgba(255,255,255,0.10) !important;
   background: rgba(255,255,255,0.03);
 }
 
-/* Court row */
+
 .divide-y > div.p-4.text-sm.flex.justify-between.gap-4 {
   transition: 180ms ease;
 }
@@ -136,25 +131,25 @@ button.hover\:bg-red-50.text-red-600:hover {
   background: rgba(255,255,255,0.03);
 }
 
-/* Court thumbnail box */
+
 .w-20.h-14.rounded.overflow-hidden.border.bg-black\/5 {
   border-color: rgba(255,255,255,0.12) !important;
   border-radius: 14px !important;
   box-shadow: 0 10px 20px rgba(0,0,0,0.35);
 }
 
-/* Subtext */
+
 .opacity-70 {
   color: rgba(255,255,255,0.60) !important;
 }
 
 
 
-/* ===========================
-   ADMIN LAYOUT PREMIUM STYLE
-   =========================== */
 
-/* Remove white background from sidebar */
+   /* ADMIN LAYOUT PREMIUM STYLE */
+ 
+
+
 aside.bg-white,
 aside.dark\:bg-gray-900 {
   background: rgba(255,255,255,0.04) !important;
@@ -162,33 +157,33 @@ aside.dark\:bg-gray-900 {
   border-right: 1px solid rgba(255,255,255,0.08) !important;
 }
 
-/* Sidebar header */
+
 aside .p-4.border-b {
   border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
 
-/* Sidebar logo box */
+
 aside .h-8.w-8.rounded {
   background: linear-gradient(135deg, #22d3ee, #6366f1) !important;
   color: white !important;
   box-shadow: 0 6px 18px rgba(34,211,238,0.35);
 }
 
-/* Sidebar links (default) */
+
 aside nav a {
   color: rgba(255,255,255,0.70) !important;
   border: 1px solid transparent;
   transition: 180ms ease;
 }
 
-/* Sidebar hover */
+
 aside nav a:hover {
   background: rgba(255,255,255,0.06) !important;
   color: rgba(255,255,255,0.95) !important;
   transform: translateX(4px);
 }
 
-/* Sidebar active link */
+
 aside nav a.bg-gray-900,
 aside nav a.dark\:bg-white {
   background: linear-gradient(135deg, rgba(34,211,238,0.25), rgba(99,102,241,0.25)) !important;
@@ -197,38 +192,38 @@ aside nav a.dark\:bg-white {
   box-shadow: 0 8px 24px rgba(34,211,238,0.15);
 }
 
-/* ================= HEADER ================= */
+/*HEADER */
 
-/* Header container */
+
 header {
   background: rgba(255,255,255,0.04) !important;
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
 
-/* Remove default border */
+
 header.border-b {
   border-color: rgba(255,255,255,0.08) !important;
 }
 
-/* Header logo box */
+
 header .h-8.w-8.rounded-md {
   background: linear-gradient(135deg, #22d3ee, #6366f1) !important;
   color: white !important;
   box-shadow: 0 6px 18px rgba(34,211,238,0.35);
 }
 
-/* Header title */
+
 header .tracking-tight {
   color: rgba(255,255,255,0.95);
 }
 
-/* Email text */
+
 header .text-xs {
   color: rgba(255,255,255,0.65) !important;
 }
 
-/* Logout button */
+
 header button.border {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.15) !important;
@@ -237,16 +232,13 @@ header button.border {
   transition: 180ms ease;
 }
 
-/* Logout hover */
+
 header button.border:hover {
   background: rgba(255,255,255,0.08) !important;
   transform: translateY(-1px);
 }
 
-/* ===== Courts Page UI upgrade (no TSX changes) ===== */
 
-/* Page background feel (works if body is dark already too) */
-/* apply background only for admin area */
 .page-wrapper {
   background: radial-gradient(900px 500px at 20% 10%, rgba(99,102,241,.18), transparent 55%),
               radial-gradient(800px 450px at 80% 15%, rgba(34,211,238,.14), transparent 55%),
@@ -254,27 +246,27 @@ header button.border:hover {
               #06070a;
 }
 
-/* Main container (your top div: p-6 space-y-6) */
+
 .p-6.space-y-6 {
   max-width: 1100px;
   margin: 0 auto;
   padding: 28px !important;
 }
 
-/* Page title */
+
 .p-6.space-y-6 > h1.text-xl.font-semibold {
   font-size: 26px;
   letter-spacing: .2px;
 }
 
-/* Error box */
+
 .border.rounded.p-3.text-sm.text-red-600 {
   background: rgba(239, 68, 68, 0.08);
   border-color: rgba(239, 68, 68, 0.25) !important;
   color: rgba(255, 180, 180, 0.95) !important;
 }
 
-/* Form card */
+
 form.border.rounded-lg.p-4.space-y-3 {
   background: rgba(255,255,255,0.04);
   border-color: rgba(255,255,255,0.10) !important;
@@ -284,14 +276,14 @@ form.border.rounded-lg.p-4.space-y-3 {
   backdrop-filter: blur(12px);
 }
 
-/* Form header (Add Court / Edit Court) */
+
 form .font-medium {
   font-size: 14px;
   color: rgba(255,255,255,.78);
   padding-bottom: 6px;
 }
 
-/* Inputs */
+
 input.border.p-2.rounded,
 input[type="file"].border.p-2.rounded.w-full {
   background: rgba(255,255,255,0.03) !important;
@@ -313,7 +305,7 @@ input[type="file"].border.p-2.rounded.w-full:focus {
   box-shadow: 0 0 0 3px rgba(34,211,238,0.12);
 }
 
-/* File label + hint */
+
 label.text-sm.opacity-80 {
   color: rgba(255,255,255,0.70) !important;
 }
@@ -395,11 +387,7 @@ button.hover\:bg-red-50.text-red-600:hover {
 
 
 
-/* ===========================
-   ADMIN LAYOUT PREMIUM STYLE
-   =========================== */
 
-/* Remove white background from sidebar */
 aside.bg-white,
 aside.dark\:bg-gray-900 {
   background: rgba(255,255,255,0.04) !important;
@@ -442,7 +430,7 @@ aside nav a.dark\:bg-white {
   box-shadow: 0 8px 24px rgba(34,211,238,0.15);
 }
 
-/* ================= HEADER ================= */
+
 
 /* Header container */
 header {

@@ -13,7 +13,7 @@ export default async function DashboardPage({
 
   const user = await getUserData();
 
-  // 🔥 If admin, don't fetch user bookings
+ 
   if (!user || user.role !== "user") {
     return (
       <DashboardClient

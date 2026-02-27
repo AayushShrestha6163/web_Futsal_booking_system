@@ -12,7 +12,7 @@ import { setAuthToken, setUserData, clearAuthCookies } from "../cookie";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-/* ✅ REGISTER */
+
 export const handleRegister = async (data: RegisterData) => {
   try {
     const response = await register(data);
@@ -29,26 +29,29 @@ export const handleRegister = async (data: RegisterData) => {
   }
 };
 
-/* ✅ LOGIN (redirect by role) */
+
 export const handleLogin = async (formData: FormData) => {
   const email = String(formData.get("email") || "");
   const password = String(formData.get("password") || "");
 
-  const response = await login({ email, password });
+  const response: any = await login({ email, password });
 
-  if (!response.success) {
-    // send error back via redirect query
-    redirect(`/login?error=${encodeURIComponent(response.message || "Login failed")}`);
+ 
+  if (!response || response.success !== true) {
+    redirect(
+      `/login?error=${encodeURIComponent(response?.message || "Invalid credentials")}`
+    );
   }
+
 
   await setAuthToken(response.token);
   await setUserData(response.data);
 
-  if (response.data.role === "admin") redirect("/admin");
+  if (response.data?.role === "admin") redirect("/admin");
   redirect("/dashboard");
 };
 
-/* ✅ UPDATE PROFILE */
+
 export async function handleUpdateProfile(profileData: FormData) {
   try {
     const result = await updateProfile(profileData);
@@ -69,7 +72,7 @@ export async function handleUpdateProfile(profileData: FormData) {
   }
 }
 
-/* ✅ REQUEST PASSWORD RESET */
+
 export const handleRequestPasswordReset = async (email: string) => {
   try {
     const response = await requestPasswordReset(email);
@@ -82,7 +85,7 @@ export const handleRequestPasswordReset = async (email: string) => {
   }
 };
 
-/* ✅ RESET PASSWORD */
+
 export const handleResetPassword = async (token: string, newPassword: string) => {
   try {
     const response = await resetPassword(token, newPassword);

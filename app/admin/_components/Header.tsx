@@ -22,7 +22,7 @@ export default function Header({ email }: { email?: string }) {
               {email || "Admin"}
             </div>
 
-            {/* ✅ server action used correctly */}
+            
             <form action={logoutAction}>
               <button
                 type="submit"

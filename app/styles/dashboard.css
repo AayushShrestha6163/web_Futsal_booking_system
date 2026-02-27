@@ -1,24 +1,23 @@
-/* Dashboard Styles for Khel Maidan (Futsal Theme) */
-/* This CSS works WITH your current Tailwind page.tsx (no class changes needed) */
+
 
 :root {
-  --km-primary: #16a34a;      /* turf green */
-  --km-primary-dark: #15803d; /* deep turf */
-  --km-bg-1: #ecfdf5;         /* light mint */
-  --km-bg-2: #d1fae5;         /* soft green */
+  --km-primary: #16a34a;      
+  --km-primary-dark: #15803d; 
+  --km-bg-1: #ecfdf5;         
+  --km-bg-2: #d1fae5;         
   --km-card: #ffffff;
-  --km-text: #0f172a;         /* slate-900 */
-  --km-muted: #475569;        /* slate-600 */
+  --km-text: #0f172a;         
+  --km-muted: #475569;        
   --km-border: #d1fae5;
 }
 
-/* Page background + default text */
+
 body {
   background: linear-gradient(135deg, var(--km-bg-1) 0%, var(--km-bg-2) 100%);
   color: var(--km-text);
 }
 
-/* Make sure dashboard content stays visible even if some element gets low opacity */
+
 main,
 header,
 section,
@@ -31,17 +30,16 @@ span {
   opacity: 1;
 }
 
-/* Header styling */
+
 header {
   border-bottom-color: var(--km-border) !important;
 }
 
-/* Links hover like brand */
+
 a:hover {
   color: var(--km-primary) !important;
 }
 
-/* Main headings */
 h1 {
   color: var(--km-text) !important;
 }
@@ -50,12 +48,11 @@ p {
   color: var(--km-muted);
 }
 
-/* Card look */
+
 .bg-white {
   border: 1px solid var(--km-border);
 }
 
-/* Upcoming booking item (green tile) */
 .bg-green-50,
 .bg-emerald-50,
 .bg-emerald-100\/70 {
@@ -63,7 +60,7 @@ p {
   border: 1px solid #86efac !important;
 }
 
-/* Buttons */
+
 .bg-green-600,
 .bg-emerald-600 {
   background: linear-gradient(135deg, var(--km-primary) 0%, var(--km-primary-dark) 100%) !important;
@@ -74,7 +71,7 @@ p {
   background: linear-gradient(135deg, var(--km-primary-dark) 0%, #166534 100%) !important;
 }
 
-/* Outline buttons (View/Profile) */
+
 button.border {
   border-color: #86efac !important;
   color: var(--km-text);
@@ -84,7 +81,7 @@ button.border:hover {
   border-color: var(--km-primary) !important;
 }
 
-/* Navbar text visibility */
+
 .text-gray-600 {
   color: var(--km-muted) !important;
 }
@@ -97,7 +94,7 @@ button.border:hover {
   color: var(--km-primary-dark) !important;
 }
 
-/* Make sure booking card text stays readable */
+
 .bg-green-50 *,
 .bg-emerald-100\/70 * {
   color: var(--km-text) !important;

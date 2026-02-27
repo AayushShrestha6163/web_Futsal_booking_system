@@ -16,7 +16,7 @@ export default function CourtsPage() {
   const [error, setError] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
 
-  // ✅ Pagination
+  
   const [page, setPage] = useState(1);
   const limit = 4; 
   const [pagination, setPagination] = useState({
@@ -26,7 +26,7 @@ export default function CourtsPage() {
     limit,
   });
 
-  // ✅ Delete Modal state
+ 
   const [isDeleteOpen, setIsDeleteOpen] = useState<null | boolean>(null);
   const [selectedCourtId, setSelectedCourtId] = useState<string | null>(null);
 
@@ -86,7 +86,7 @@ export default function CourtsPage() {
 
       resetForm();
 
-      // ✅ after create/update go to page 1 so user sees it
+      
       setPage(1);
       await load();
     } catch (e: any) {
@@ -123,7 +123,7 @@ export default function CourtsPage() {
       setError("");
       await deleteAdminCourt(selectedCourtId);
 
-      // ✅ if last item deleted on last page, move back a page
+      
       const willBeEmpty = courts.length === 1 && page > 1;
       if (willBeEmpty) setPage((p) => p - 1);
 
@@ -288,7 +288,7 @@ export default function CourtsPage() {
           )}
         </div>
 
-        {/* ✅ Pagination footer */}
+     
         <div className="flex items-center justify-between p-4 border-t border-white/10">
           <div className="text-sm opacity-70">
             Page {page} of {totalPages}

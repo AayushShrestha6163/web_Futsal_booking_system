@@ -3,7 +3,6 @@
 import { axiosServer } from "../api/axios.server";
 import { API } from "../api/endpoints";
 
-/* ✅ CREATE BOOKING (returns booking response, NO redirect) */
 export const createBookingAction = async (
   court: string,
   date: string,
@@ -28,7 +27,7 @@ export const createBookingAction = async (
   }
 };
 
-/* ✅ GET MY BOOKINGS */
+
 export const getMyBookingsAction = async () => {
   try {
     const ax = await axiosServer();
@@ -44,7 +43,7 @@ export const getMyBookingsAction = async () => {
   }
 };
 
-/* ✅ CANCEL BOOKING */
+
 export const cancelBookingAction = async (bookingId: string) => {
   try {
     const ax = await axiosServer();
