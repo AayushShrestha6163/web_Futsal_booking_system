@@ -11,42 +11,58 @@ export default function LoginForm() {
   return (
     <form action={handleLogin} className="space-y-5">
       {error && (
-        <p className="text-sm text-red-500">
+        <p className="text-sm text-red-600 bg-red-50 border border-red-200 px-3 py-2 rounded-lg">
           {decodeURIComponent(error)}
         </p>
       )}
 
       {/* Email */}
       <div>
-        <label className="block text-sm text-white/70 mb-1">Email</label>
+        <label className="block text-sm font-medium text-green-900/80 mb-2">
+          Email
+        </label>
         <input
           name="email"
           type="email"
           placeholder="aayush@email.com"
           required
-          className="w-full bg-transparent border-b border-purple-500/50 
-          focus:border-purple-500 outline-none text-white py-2"
+          className="
+            w-full rounded-xl px-4 py-3
+            bg-white/80 border border-green-200
+            text-green-950 placeholder:text-green-900/35
+            outline-none
+            focus:border-green-500 focus:ring-4 focus:ring-green-500/15
+            transition
+          "
         />
       </div>
 
       {/* Password */}
       <div>
-        <label className="block text-sm text-white/70 mb-1">Password</label>
+        <label className="block text-sm font-medium text-green-900/80 mb-2">
+          Password
+        </label>
         <input
           name="password"
           type="password"
           placeholder="••••••••"
           required
-          className="w-full bg-transparent border-b border-purple-500/50 
-          focus:border-purple-500 outline-none text-white py-2"
+          className="
+            w-full rounded-xl px-4 py-3
+            bg-white/80 border border-green-200
+            text-green-950 placeholder:text-green-900/35
+            outline-none
+            focus:border-green-500 focus:ring-4 focus:ring-green-500/15
+            transition
+          "
         />
       </div>
 
-      {/* ✅ Forgot password link */}
-      <div className="text-right -mt-2">
+      {/* Forgot password */}
+      <div className="flex justify-end -mt-2">
         <Link
           href="/request-password-reset"
-          className="text-xs text-purple-400 hover:text-purple-300 hover:underline transition"
+          className="text-xs font-medium text-green-700 hover:text-green-800 hover:underline transition"
         >
           Forgot password?
         </Link>
@@ -55,9 +71,14 @@ export default function LoginForm() {
       {/* Button */}
       <button
         type="submit"
-        className="w-full py-2 rounded-full 
-        bg-gradient-to-r from-purple-600 to-purple-500 
-        text-white font-medium hover:opacity-90 transition"
+        className="
+          w-full py-3 rounded-full
+          bg-gradient-to-r from-green-600 to-green-700
+          text-white font-semibold
+          shadow-lg shadow-green-700/20
+          hover:brightness-105 active:brightness-95
+          transition
+        "
       >
         Login
       </button>

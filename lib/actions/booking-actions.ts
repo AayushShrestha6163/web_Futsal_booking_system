@@ -57,3 +57,16 @@ export const cancelBookingAction = async (bookingId: string) => {
     throw new Error(msg);
   }
 };
+export const initiateEsewaPaymentAction = async (bookingId: string) => {
+  try {
+    const ax = await axiosServer();
+    const res = await ax.post(API.PAYMENTS.ESEWA_INITIATE, { bookingId });
+    return res.data;
+  } catch (error: any) {
+    const msg =
+      error?.response?.data?.message ||
+      error?.message ||
+      "Failed to initiate payment";
+    throw new Error(msg);
+  }
+};

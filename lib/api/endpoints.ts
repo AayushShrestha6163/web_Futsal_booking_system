@@ -40,4 +40,5 @@ export const API = {
     COURT_ONE: (id: string) => `/api/courts/${id}`,
     SLOTS: (courtId: string) => `/api/courts/${courtId}/slots`,
   },
+  
 };

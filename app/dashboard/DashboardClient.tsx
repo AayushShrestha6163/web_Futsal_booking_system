@@ -2,20 +2,30 @@
 
 import { Calendar, Clock, MapPin, Trophy, User, LogOut, Menu } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import "@/app/styles/dashboard.css";
 import { useRouter } from "next/navigation";
-import { cancelBookingAction } from "../../lib/actions/booking-actions";
-import { useAuth } from "@/context/AuthContext"; 
+import {
+  cancelBookingAction,
+  initiateEsewaPaymentAction,
+} from "@/lib/actions/booking-actions";
+import { useAuth } from "@/context/AuthContext";
 
 type Booking = {
   _id: string;
-  court?: { name?: string; location?: string };
+  court?: { name?: string; location?: string; pricePerHour?: number };
   date: string;
   startTime: string;
   endTime: string;
-  status?: string;
-  paymentStatus?: string;
+
+  status?: "pending" | "confirmed" | "cancelled" | "completed";
+
+  price?: number;
+
+  paymentMethod?: "NONE" | "ESEWA";
+  paymentStatus?: "UNPAID" | "PAID" | "FAILED";
+  transactionUuid?: string;
+  paidAt?: string;
 };
 
 export default function DashboardClient({
@@ -28,15 +38,24 @@ export default function DashboardClient({
   error?: string;
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [payingId, setPayingId] = useState<string>("");
   const router = useRouter();
-  const { logout } = useAuth(); 
+  const { logout } = useAuth();
 
-  const stats = [
-    { label: "Total Bookings", value: String(upcomingBookings.length), icon: Calendar, color: "text-green-600" },
-    { label: "Hours Played", value: "-", icon: Clock, color: "text-blue-600" },
-    { label: "Courts Visited", value: "-", icon: MapPin, color: "text-purple-600" },
-    { label: "Matches Won", value: "-", icon: Trophy, color: "text-amber-600" },
-  ];
+  const stats = useMemo(
+    () => [
+      {
+        label: "Total Bookings",
+        value: String(upcomingBookings.length),
+        icon: Calendar,
+        color: "text-green-600",
+      },
+      { label: "Hours Played", value: "-", icon: Clock, color: "text-blue-600" },
+      { label: "Courts Visited", value: "-", icon: MapPin, color: "text-purple-600" },
+      { label: "Matches Won", value: "-", icon: Trophy, color: "text-amber-600" },
+    ],
+    [upcomingBookings.length]
+  );
 
   const handleCancel = async (bookingId: string) => {
     const ok = confirm("Are you sure you want to cancel this booking?");
@@ -47,6 +66,42 @@ export default function DashboardClient({
       router.refresh();
     } catch (err: any) {
       alert(err?.message || "Cancel failed");
+    }
+  };
+
+  // ✅ Pay Now using SERVER ACTION (axiosServer reads httpOnly cookie)
+  const handlePayNow = async (bookingId: string) => {
+    try {
+      setPayingId(bookingId);
+
+      const data: any = await initiateEsewaPaymentAction(bookingId);
+
+      if (!data?.success) {
+        throw new Error(data?.message || "Payment initiation failed");
+      }
+
+      const formUrl: string = data.formUrl;
+      const fields: Record<string, any> = data.fields || {};
+
+      // Submit form to eSewa
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = formUrl;
+
+      Object.entries(fields).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = String(value);
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+    } catch (err: any) {
+      alert(err?.message || "Payment failed");
+    } finally {
+      setPayingId("");
     }
   };
 
@@ -74,7 +129,6 @@ export default function DashboardClient({
               <User className="w-4 h-4" /> Profile
             </Link>
 
-            
             <button
               type="button"
               onClick={logout}
@@ -95,14 +149,11 @@ export default function DashboardClient({
             <Link href="/dashboard" className="block p-2 bg-emerald-100 text-emerald-800 rounded">
               Dashboard
             </Link>
-            <Link href="/dashboard/bookings" className="block p-2 text-slate-700 hover:text-emerald-700">
-              My Bookings
-            </Link>
+            
             <Link href="/dashboard/courts" className="block p-2 text-slate-700 hover:text-emerald-700">
               Find Courts
             </Link>
 
-            
             <button
               type="button"
               onClick={logout}
@@ -117,7 +168,7 @@ export default function DashboardClient({
       <main className="max-w-7xl mx-auto px-4 py-8">
         {success && (
           <div className="mb-6 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded">
-            Booking successful 🎉
+            {decodeURIComponent(success)}
           </div>
         )}
 
@@ -153,39 +204,86 @@ export default function DashboardClient({
           {upcomingBookings.length === 0 ? (
             <p className="text-slate-600">No upcoming bookings yet. Book your first court!</p>
           ) : (
-            upcomingBookings.map((b) => (
-              <div
-                key={b._id}
-                className="flex justify-between p-4 bg-emerald-100/70 border border-emerald-200 rounded mb-3"
-              >
-                <div>
-                  <h3 className="font-semibold text-slate-900">
-                    {b.court?.name || "Court"}
-                    {b.court?.location ? ` - ${b.court.location}` : ""}
-                  </h3>
-                  <p className="text-sm text-slate-600">{b.date}</p>
-                  <p className="text-sm text-slate-600">
-                    {b.startTime} - {b.endTime}
-                  </p>
-                </div>
+            upcomingBookings.map((b) => {
+              const payStatus = b.paymentStatus || "UNPAID";
+              const amount = b.price ?? 0;
 
-                <div className="flex gap-2 items-start">
-                  <Link
-                    href="/dashboard/bookings"
-                    className="border border-emerald-300 text-emerald-800 px-3 py-1 rounded hover:bg-emerald-50"
-                  >
-                    View
-                  </Link>
+              const canPay = b.status === "pending" && payStatus !== "PAID";
+              const canCancel = payStatus !== "PAID";
 
-                  <button
-                    onClick={() => handleCancel(b._id)}
-                    className="text-red-600 hover:text-red-700 px-3 py-1"
-                  >
-                    Cancel
-                  </button>
+              return (
+                <div
+                  key={b._id}
+                  className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 p-4 bg-emerald-100/70 border border-emerald-200 rounded mb-3"
+                >
+                  <div className="min-w-0">
+                    <h3 className="font-semibold text-slate-900">
+                      {b.court?.name || "Court"}
+                      {b.court?.location ? ` - ${b.court.location}` : ""}
+                    </h3>
+
+                    <p className="text-sm text-slate-600">{b.date}</p>
+                    <p className="text-sm text-slate-600">
+                      {b.startTime} - {b.endTime}
+                    </p>
+
+                    {/* ✅ Paid/Unpaid + amount */}
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <span
+                        className={
+                          payStatus === "PAID"
+                            ? "px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 border border-green-200"
+                            : payStatus === "FAILED"
+                            ? "px-3 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700 border border-yellow-200"
+                            : "px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700 border border-red-200"
+                        }
+                      >
+                        {payStatus}
+                      </span>
+
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/70 border border-emerald-200 text-slate-700">
+                        Rs {amount}
+                      </span>
+
+                      {b.paymentMethod && b.paymentMethod !== "NONE" && (
+                        <span className="text-xs text-slate-600">
+                          {b.paymentMethod === "ESEWA" ? "eSewa" : b.paymentMethod}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* ✅ Actions: Pay Now + Cancel (no View) */}
+                  <div className="flex gap-2 sm:items-start">
+                    {canPay ? (
+                      <button
+                        onClick={() => handlePayNow(b._id)}
+                        disabled={payingId === b._id}
+                        className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white px-4 py-2 rounded-md text-sm font-semibold shadow"
+                      >
+                        {payingId === b._id ? "Processing..." : "Pay Now"}
+                      </button>
+                    ) : (
+                      <button
+                        disabled
+                        className="bg-slate-200 text-slate-600 px-4 py-2 rounded-md text-sm font-semibold cursor-not-allowed"
+                      >
+                        {payStatus === "PAID" ? "Paid" : "Not Payable"}
+                      </button>
+                    )}
+
+                    <button
+                      onClick={() => handleCancel(b._id)}
+                      disabled={!canCancel}
+                      className="text-red-600 hover:text-red-700 disabled:opacity-50 px-3 py-2 text-sm font-semibold"
+                      title={!canCancel ? "Paid booking cannot be cancelled" : "Cancel booking"}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 
