@@ -12,10 +12,10 @@ export default async function DashboardLayout({
 }) {
   const user = await getUserData();
 
-  // not logged in
+  
   if (!user) redirect("/login");
 
-  // admin should not be in user dashboard
+  
   if (user.role === "admin") redirect("/admin");
 
   return <>{children}</>;

@@ -48,7 +48,7 @@ export default function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit(submit)} className="space-y-5">
-      {/* Full Name */}
+   
       <div>
         <label className="block text-sm font-medium text-green-900/80 mb-2">
           Full Name
@@ -71,7 +71,7 @@ export default function SignupForm() {
         )}
       </div>
 
-      {/* Email */}
+      
       <div>
         <label className="block text-sm font-medium text-green-900/80 mb-2">
           Email
@@ -94,7 +94,7 @@ export default function SignupForm() {
         )}
       </div>
 
-      {/* Password */}
+     
       <div>
         <label className="block text-sm font-medium text-green-900/80 mb-2">
           Password

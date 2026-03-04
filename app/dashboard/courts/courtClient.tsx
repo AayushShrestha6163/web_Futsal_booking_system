@@ -35,7 +35,7 @@ export default function CourtsClient({
 
   return (
     <>
-      {/* Search Bar */}
+     
       <div className="bg-white border border-emerald-100 rounded-xl p-4 shadow mb-6 flex items-center gap-2">
         <Search className="w-5 h-5 text-slate-500" />
         <input
@@ -63,7 +63,7 @@ export default function CourtsClient({
                 href={`/dashboard/courts/${c._id}`}
                 className="group bg-white border border-emerald-100 rounded-2xl shadow hover:shadow-lg transition overflow-hidden"
               >
-                {/* Image Section */}
+                
                 <div className="h-56 w-full overflow-hidden bg-emerald-100">
                   {img ? (
                     <img
@@ -80,7 +80,7 @@ export default function CourtsClient({
                   )}
                 </div>
 
-                {/* Content */}
+           
                 <div className="p-5">
                   <div className="flex items-start justify-between gap-3">
                     <h2 className="text-lg font-bold text-slate-900">

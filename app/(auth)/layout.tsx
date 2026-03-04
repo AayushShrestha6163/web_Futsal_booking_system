@@ -13,15 +13,15 @@ export default function AuthLayout({
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
       
-      {/* Landing Page Gradient Background */}
+      
       <div className="absolute inset-0 bg-gradient-to-br from-[#0dbb55] via-[#18c26a] to-[#bff3d4]" />
 
-      {/* Soft Decorative Circles */}
+      
       <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-white/15" />
       <div className="absolute top-[10%] -right-28 w-[520px] h-[520px] rounded-full bg-white/12" />
       <div className="absolute -bottom-40 left-[10%] w-[620px] h-[620px] rounded-full bg-white/18" />
 
-      {/* Center Content */}
+      
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-10">
         <div
           className="

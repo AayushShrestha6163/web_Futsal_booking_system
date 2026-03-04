@@ -38,16 +38,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     checkAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
 
   const logout = async () => {
     try {
-      await clearAuthCookies();      // ✅ clear cookies (server action)
+      await clearAuthCookies();      
       setIsAuthenticated(false);
       setUser(null);
 
-      // ✅ force Next to re-read cookies + prevent reused UI
+      
       router.replace("/login");
       router.refresh();
     } catch (error) {

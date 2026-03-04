@@ -16,7 +16,7 @@ export default function LoginForm() {
         </p>
       )}
 
-      {/* Email */}
+      
       <div>
         <label className="block text-sm font-medium text-green-900/80 mb-2">
           Email
@@ -37,7 +37,7 @@ export default function LoginForm() {
         />
       </div>
 
-      {/* Password */}
+   
       <div>
         <label className="block text-sm font-medium text-green-900/80 mb-2">
           Password
@@ -58,7 +58,7 @@ export default function LoginForm() {
         />
       </div>
 
-      {/* Forgot password */}
+      
       <div className="flex justify-end -mt-2">
         <Link
           href="/request-password-reset"
@@ -68,7 +68,7 @@ export default function LoginForm() {
         </Link>
       </div>
 
-      {/* Button */}
+  
       <button
         type="submit"
         className="

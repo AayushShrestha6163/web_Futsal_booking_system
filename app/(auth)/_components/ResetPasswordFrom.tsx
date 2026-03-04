@@ -36,10 +36,10 @@ export default function ResetPasswordForm({ token }: { token: string }) {
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
-      {/* Background like landing page */}
+      
       <div className="absolute inset-0 bg-gradient-to-br from-[#0dbb55] via-[#18c26a] to-[#bff3d4]" />
 
-      {/* soft circles */}
+      
       <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-white/15" />
       <div className="absolute top-[10%] -right-28 w-[520px] h-[520px] rounded-full bg-white/12" />
       <div className="absolute -bottom-40 left-[10%] w-[620px] h-[620px] rounded-full bg-white/18" />
@@ -55,7 +55,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
           "
         >
           <div className="grid grid-cols-1 md:grid-cols-2 min-h-[520px]">
-            {/* Left hero */}
+           
             <div className="relative bg-gradient-to-br from-[#0b7f3b] via-[#0a8a40] to-[#0a6b33] text-white">
               <div className="absolute inset-0">
                 <div className="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-white/10" />
@@ -88,7 +88,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
               </div>
             </div>
 
-            {/* Right form */}
+           
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="p-8 sm:p-10 space-y-6 flex flex-col justify-center"
@@ -102,7 +102,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
                 </p>
               </div>
 
-              {/* New Password */}
+              
               <div>
                 <label className="block text-sm font-medium text-green-900/80 mb-2">
                   New Password
@@ -127,7 +127,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
                 )}
               </div>
 
-              {/* Confirm Password */}
+              
               <div>
                 <label className="block text-sm font-medium text-green-900/80 mb-2">
                   Confirm New Password
@@ -152,7 +152,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
                 )}
               </div>
 
-              {/* Button */}
+              
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -169,7 +169,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
                 {isSubmitting ? "Resetting..." : "Reset Password"}
               </button>
 
-              {/* Small links for mobile (since left panel may go top on mobile) */}
+              
               <div className="md:hidden flex items-center justify-between text-xs text-green-900/70 pt-1">
                 <Link href="/login" className="text-green-700 hover:underline">
                   Back to Login

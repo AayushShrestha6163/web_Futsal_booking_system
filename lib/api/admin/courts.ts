@@ -16,7 +16,7 @@ export const createAdminCourt = async (payload: any) => {
   formData.append("openingTime", payload.openingTime);
   formData.append("closingTime", payload.closingTime);
 
-  // ✅ file field name MUST be "image"
+  
   if (payload.image) formData.append("image", payload.image);
 
   const res = await axiosInstance.post(API.ADMIN.COURTS, formData, {

@@ -56,7 +56,7 @@ export default async function ProfilePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 p-6 sm:p-10">
       <div className="max-w-4xl mx-auto">
-        {/* Top bar */}
+        
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
@@ -75,7 +75,7 @@ export default async function ProfilePage() {
               Back to Dashboard
             </Link>
 
-            {/* Logout (server action) */}
+          
             <form action={logoutAction}>
               <button
                 type="submit"
@@ -87,14 +87,14 @@ export default async function ProfilePage() {
           </div>
         </div>
 
-        {/* Card */}
+      
         <div className="bg-white rounded-3xl shadow-xl border border-emerald-100 overflow-hidden">
-          {/* Header strip */}
+          
           <div className="p-6 sm:p-8 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white">
             <div className="flex items-center gap-5">
               <div className="w-20 h-20 rounded-2xl overflow-hidden bg-white/20 flex items-center justify-center">
                 {profileImage ? (
-                  // eslint-disable-next-line @next/next/no-img-element
+                  
                   <img
                     src={profileImage}
                     alt="Profile"
@@ -120,7 +120,7 @@ export default async function ProfilePage() {
             </div>
           </div>
 
-          {/* Body */}
+      
           <div className="p-6 sm:p-8">
             <div className="grid sm:grid-cols-3 gap-4">
               <Info label="User ID" value={user._id} />

@@ -313,7 +313,7 @@ label.text-sm.opacity-80 {
   color: rgba(255,255,255,0.55) !important;
 }
 
-/* Buttons base (Edit/Update/Add/Cancel) */
+
 button.border.px-4.py-2.rounded,
 button.border.px-3.py-2.rounded {
   border-color: rgba(255,255,255,0.14) !important;
@@ -329,14 +329,14 @@ button.border.px-3.py-2.rounded:hover {
   transform: translateY(-1px);
 }
 
-/* Primary button (first button in form row) */
+
 form .flex.gap-2 > button:first-child {
   background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(99,102,241,0.18));
   border-color: rgba(34,211,238,0.30) !important;
   box-shadow: 0 10px 24px rgba(34,211,238,0.10);
 }
 
-/* Delete button */
+
 button.hover\:bg-red-50.text-red-600 {
   color: rgba(255, 120, 120, 0.95) !important;
   border-color: rgba(239,68,68,0.28) !important;
@@ -348,8 +348,7 @@ button.hover\:bg-red-50.text-red-600:hover {
   transform: translateY(-1px);
 }
 
-/* All Courts wrapper */
-/* All Courts wrapper ONLY (the list container after the form) */
+
 .p-6.space-y-6 > .border.rounded-lg:not(form) {
   background: rgba(255,255,255,0.04);
   border-color: rgba(255,255,255,0.10) !important;
@@ -359,13 +358,13 @@ button.hover\:bg-red-50.text-red-600:hover {
   backdrop-filter: blur(12px);
 }
 
-/* All Courts header row */
+
 .p-4.border-b.font-medium {
   border-bottom-color: rgba(255,255,255,0.10) !important;
   background: rgba(255,255,255,0.03);
 }
 
-/* Court row */
+
 .divide-y > div.p-4.text-sm.flex.justify-between.gap-4 {
   transition: 180ms ease;
 }
@@ -373,14 +372,14 @@ button.hover\:bg-red-50.text-red-600:hover {
   background: rgba(255,255,255,0.03);
 }
 
-/* Court thumbnail box */
+
 .w-20.h-14.rounded.overflow-hidden.border.bg-black\/5 {
   border-color: rgba(255,255,255,0.12) !important;
   border-radius: 14px !important;
   box-shadow: 0 10px 20px rgba(0,0,0,0.35);
 }
 
-/* Subtext */
+
 .opacity-70 {
   color: rgba(255,255,255,0.60) !important;
 }

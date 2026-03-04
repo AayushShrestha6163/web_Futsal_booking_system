@@ -69,7 +69,7 @@ export default function DashboardClient({
     }
   };
 
-  // ✅ Pay Now using SERVER ACTION (axiosServer reads httpOnly cookie)
+  
   const handlePayNow = async (bookingId: string) => {
     try {
       setPayingId(bookingId);
@@ -83,7 +83,7 @@ export default function DashboardClient({
       const formUrl: string = data.formUrl;
       const fields: Record<string, any> = data.fields || {};
 
-      // Submit form to eSewa
+      
       const form = document.createElement("form");
       form.method = "POST";
       form.action = formUrl;
@@ -118,9 +118,7 @@ export default function DashboardClient({
             <Link href="/dashboard" className="text-emerald-700 font-semibold">
               Dashboard
             </Link>
-            <Link href="/dashboard/bookings" className="text-slate-600 hover:text-emerald-700">
-              My Bookings
-            </Link>
+           
             <Link href="/dashboard/courts" className="text-slate-600 hover:text-emerald-700">
               Find Courts
             </Link>
