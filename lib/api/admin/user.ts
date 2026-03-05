@@ -57,7 +57,7 @@ export const updateUser = async (id: string, updateData: any) => {
             updateData,
             {
                 headers: {
-                    'Content-Type': 'multipart/form-data', // for file upload/multer
+                    'Content-Type': 'multipart/form-data', 
                 }
             }
         );
@@ -76,16 +76,16 @@ export const updateProfile = async(profileData: any) => {
             profileData,
             {
                 headers: {
-                    'Content-Type': 'multipart/form-data' // for file upload/multer
+                    'Content-Type': 'multipart/form-data' 
                 }
             }
         );
         return response.data;
     }catch(err: Error | any){
         throw new Error(
-            err.response?.data?.message  // backend error message
-            || err.message // general axios error message
-            || "Update profile failed" // fallback message
+            err.response?.data?.message  
+            || err.message 
+            || "Update profile failed" 
         )
     }
 }

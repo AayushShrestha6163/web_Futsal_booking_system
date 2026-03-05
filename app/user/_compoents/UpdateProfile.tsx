@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { useState, useRef } from "react";
 import Image from "next/image";
-// import { toast } from "react-toastify";
+
 
 import { z } from "zod";
 import { UpdateUserData, updateUserSchema } from "../schema";
@@ -85,7 +85,7 @@ export default function UpdateUserForm() {
                     </p>
                 )}
 
-                {/* Profile Image Display */}
+                
                 <div className="flex justify-center mb-4">
                     {previewImage ? (
                         <div className="relative w-24 h-24">
@@ -115,7 +115,7 @@ export default function UpdateUserForm() {
                     )}
                 </div>
 
-                {/* Profile Image Input */}
+                
                 <div className="mb-4">
                     <label className="block text-sm font-medium mb-1 text-green-400">
                         Profile Image
@@ -140,7 +140,7 @@ export default function UpdateUserForm() {
                     )}
                 </div>
 
-                {/* First Name Input */}
+                
                 <div>
                     <label className="block text-sm font-medium mb-1 text-green-400" htmlFor="firstName">
                         First Name
@@ -158,7 +158,7 @@ export default function UpdateUserForm() {
                     )}
                 </div>
 
-                {/* Last Name Input */}
+                
                 <div>
                     <label className="block text-sm font-medium mb-1 text-green-400" htmlFor="lastName">
                         Last Name
@@ -176,7 +176,7 @@ export default function UpdateUserForm() {
                     )}
                 </div>
 
-                {/* Submit Button */}
+                
                 <button
                     type="submit"
                     disabled={isSubmitting}

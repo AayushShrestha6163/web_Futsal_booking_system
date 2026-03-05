@@ -1,360 +1,115 @@
-/* Dashboard Styles for Khel Maidan */
 
-.dashboard-container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+
+:root {
+  --km-primary: #16a34a;      
+  --km-primary-dark: #15803d; 
+  --km-bg-1: #ecfdf5;         
+  --km-bg-2: #d1fae5;         
+  --km-card: #ffffff;
+  --km-text: #0f172a;         
+  --km-muted: #475569;        
+  --km-border: #d1fae5;
 }
 
 
-.dashboard-header {
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(8px);
-}
-
-.dashboard-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: all 0.3s ease;
-}
-
-.dashboard-logo:hover {
-  transform: scale(1.05);
+body {
+  background: linear-gradient(135deg, var(--km-bg-1) 0%, var(--km-bg-2) 100%);
+  color: var(--km-text);
 }
 
 
-.stats-card {
-  background: white;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: none;
-}
-
-.stats-card:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.stat-value {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #111827;
-  margin: 0;
-}
-
-.stat-label {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-bottom: 0.25rem;
-}
-
-.stat-icon-wrapper {
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  background: #f9fafb;
-}
-
-.booking-card {
-  background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
-  border: 1px solid #86efac;
-  border-radius: 0.75rem;
-  padding: 1rem;
-  transition: all 0.3s ease;
-}
-
-.booking-card:hover {
-  transform: translateX(4px);
-  box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2);
-}
-
-.booking-icon {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.booking-details h3 {
-  font-weight: 600;
-  color: #111827;
-  margin: 0;
-  margin-bottom: 0.25rem;
-}
-
-.booking-details p {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin: 0.125rem 0;
+main,
+header,
+section,
+div,
+p,
+h1,
+h2,
+h3,
+span {
+  opacity: 1;
 }
 
 
-.quick-action-btn {
-  width: 100%;
-  justify-content: flex-start;
-  gap: 0.75rem;
-  height: 3rem;
-  border: 1px solid #e5e7eb;
-  background: white;
-  transition: all 0.3s ease;
-  border-radius: 0.5rem;
-}
-
-.quick-action-btn:hover {
-  background: #f9fafb;
-  border-color: #16a34a;
-  transform: translateX(4px);
+header {
+  border-bottom-color: var(--km-border) !important;
 }
 
 
-.activity-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #e5e7eb;
+a:hover {
+  color: var(--km-primary) !important;
 }
 
-.activity-item:last-child {
-  border-bottom: none;
+h1 {
+  color: var(--km-text) !important;
 }
 
-.activity-indicator {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.activity-indicator.success {
-  background: #22c55e;
-}
-
-.activity-indicator.completed {
-  background: #3b82f6;
-}
-
-.activity-indicator.cancelled {
-  background: #ef4444;
-}
-
-.activity-text {
-  font-weight: 500;
-  color: #111827;
-  margin: 0;
-}
-
-.activity-time {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin: 0;
+p {
+  color: var(--km-muted);
 }
 
 
-.btn-primary {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-  color: white;
-  font-weight: 600;
-  padding: 0.75rem 2rem;
-  border-radius: 0.5rem;
-  border: none;
-  box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.3);
-  transition: all 0.3s ease;
-  cursor: pointer;
+.bg-white {
+  border: 1px solid var(--km-border);
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.4);
-  background: linear-gradient(135deg, #15803d 0%, #166534 100%);
-}
-
-.btn-outline {
-  border: 1px solid #16a34a;
-  color: #16a34a;
-  background: transparent;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  transition: all 0.3s ease;
-}
-
-.btn-outline:hover {
-  background: #f0fdf4;
-}
-
-.btn-ghost {
-  color: #dc2626;
-  background: transparent;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  transition: all 0.3s ease;
-}
-
-.btn-ghost:hover {
-  background: #fee2e2;
-  color: #b91c1c;
+.bg-green-50,
+.bg-emerald-50,
+.bg-emerald-100\/70 {
+  background: linear-gradient(135deg, var(--km-bg-1) 0%, var(--km-bg-2) 100%) !important;
+  border: 1px solid #86efac !important;
 }
 
 
-.card {
-  background: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border: none;
-  overflow: hidden;
+.bg-green-600,
+.bg-emerald-600 {
+  background: linear-gradient(135deg, var(--km-primary) 0%, var(--km-primary-dark) 100%) !important;
 }
 
-.card-header {
-  padding: 1.5rem;
-  border-bottom: 1px solid #f3f4f6;
-}
-
-.card-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #111827;
-  margin: 0;
-}
-
-.card-description {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-top: 0.25rem;
-}
-
-.card-content {
-  padding: 1.5rem;
+.hover\:bg-green-700:hover,
+.hover\:bg-emerald-700:hover {
+  background: linear-gradient(135deg, var(--km-primary-dark) 0%, #166534 100%) !important;
 }
 
 
-.mobile-menu {
-  display: block;
-  padding: 1rem 0;
-  border-top: 1px solid #e5e7eb;
+button.border {
+  border-color: #86efac !important;
+  color: var(--km-text);
 }
 
-.mobile-menu-item {
-  display: block;
-  padding: 0.5rem 1rem;
-  color: #6b7280;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
-}
-
-.mobile-menu-item.active {
-  color: #16a34a;
-  background: #f0fdf4;
-  font-weight: 600;
-}
-
-.mobile-menu-item:hover {
-  background: #f9fafb;
+button.border:hover {
+  border-color: var(--km-primary) !important;
 }
 
 
-@media (max-width: 768px) {
-  .dashboard-header {
-    padding: 0 1rem;
-  }
-
-  .stats-card {
-    padding: 1rem;
-  }
-
-  .stat-value {
-    font-size: 1.5rem;
-  }
-
-  .booking-card {
-    padding: 0.75rem;
-  }
-
-  .card-header,
-  .card-content {
-    padding: 1rem;
-  }
-
-  .btn-primary {
-    width: 100%;
-    padding: 0.875rem;
-  }
+.text-gray-600 {
+  color: var(--km-muted) !important;
 }
 
-@media (max-width: 640px) {
-  .dashboard-logo {
-    font-size: 1rem;
-  }
+.text-green-600 {
+  color: var(--km-primary) !important;
+}
 
-  .stat-value {
-    font-size: 1.25rem;
-  }
-
-  .card-title {
-    font-size: 1.125rem;
-  }
+.text-green-700 {
+  color: var(--km-primary-dark) !important;
 }
 
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.bg-green-50 *,
+.bg-emerald-100\/70 * {
+  color: var(--km-text) !important;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
+/* Danger button */
+.text-red-600 {
+  color: #ef4444 !important;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.text-red-600:hover {
+  color: #dc2626 !important;
 }
 
-.animate-slide-in {
-  animation: slideIn 0.3s ease-out;
-}
-
-.gradient-bg {
-  background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 50%, #dcfce7 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Optional: slightly nicer shadows */
+.shadow {
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08) !important;
 }

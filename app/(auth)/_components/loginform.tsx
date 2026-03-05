@@ -1,105 +1,86 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import { loginSchema, type LoginData } from "../schema";
-import { login } from "@/lib/api/auth";
+import { useSearchParams } from "next/navigation";
 import { handleLogin } from "@/lib/actions/auth-actions";
+import Link from "next/link";
 
 export default function LoginForm() {
-  const router = useRouter();
-  const [pending, startTransition] = useTransition();
-  const [error, setError] = useState<string | null>(null);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<LoginData>({
-    resolver: zodResolver(loginSchema),
-    mode: "onSubmit",
-  });
-
-  const submit = async (values: LoginData) => {
-    startTransition(async () => {
-            try {
-                const response = await handleLogin(values);
-                if (!response.success) {
-                    throw new Error(response.message);
-                }
-                if (response.success) {
-                    if (response.data?.role == 'admin') {
-                        return router.replace("/admin");
-                    }
-                    if (response.data?.role === 'user') {
-                        return router.replace("/dashboard");
-                    }
-                    return router.replace("/");
-                } else {
-                    setError('Login failed');
-                }
-            } catch (err: Error | any) {
-                setError(err.message || 'Login failed');
-            }
-        })
-
-    console.log("login", values);
-  };
+  const sp = useSearchParams();
+  const error = sp.get("error");
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="space-y-5">
-       {error && (
-                <p className="text-sm text-red-600">{error}</p>
-            )}
+    <form action={handleLogin} className="space-y-5">
+      {error && (
+        <p className="text-sm text-red-600 bg-red-50 border border-red-200 px-3 py-2 rounded-lg">
+          {decodeURIComponent(error)}
+        </p>
+      )}
 
-     
+      
       <div>
-        <label className="block text-sm text-white/70 mb-1">
+        <label className="block text-sm font-medium text-green-900/80 mb-2">
           Email
         </label>
         <input
-          {...register("email")}
+          name="email"
           type="email"
           placeholder="aayush@email.com"
-          className="w-full bg-transparent border-b border-purple-500/50 
-          focus:border-purple-500 outline-none text-white py-2"
+          required
+          className="
+            w-full rounded-xl px-4 py-3
+            bg-white/80 border border-green-200
+            text-green-950 placeholder:text-green-900/35
+            outline-none
+            focus:border-green-500 focus:ring-4 focus:ring-green-500/15
+            transition
+          "
         />
-        {errors.email && (
-          <p className="text-xs text-red-400 mt-1">
-            {errors.email.message}
-          </p>
-        )}
       </div>
 
-     
+   
       <div>
-        <label className="block text-sm text-white/70 mb-1">
+        <label className="block text-sm font-medium text-green-900/80 mb-2">
           Password
         </label>
         <input
-          {...register("password")}
+          name="password"
           type="password"
           placeholder="••••••••"
-          className="w-full bg-transparent border-b border-purple-500/50 
-          focus:border-purple-500 outline-none text-white py-2"
+          required
+          className="
+            w-full rounded-xl px-4 py-3
+            bg-white/80 border border-green-200
+            text-green-950 placeholder:text-green-900/35
+            outline-none
+            focus:border-green-500 focus:ring-4 focus:ring-green-500/15
+            transition
+          "
         />
-        {errors.password && (
-          <p className="text-xs text-red-400 mt-1">
-            {errors.password.message}
-          </p>
-        )}
       </div>
 
+      
+      <div className="flex justify-end -mt-2">
+        <Link
+          href="/request-password-reset"
+          className="text-xs font-medium text-green-700 hover:text-green-800 hover:underline transition"
+        >
+          Forgot password?
+        </Link>
+      </div>
+
+  
       <button
         type="submit"
-        disabled={isSubmitting || pending}
-        className="w-full py-2 rounded-full 
-        bg-gradient-to-r from-purple-600 to-purple-500 
-        text-white font-medium hover:opacity-90 transition"
+        className="
+          w-full py-3 rounded-full
+          bg-gradient-to-r from-green-600 to-green-700
+          text-white font-semibold
+          shadow-lg shadow-green-700/20
+          hover:brightness-105 active:brightness-95
+          transition
+        "
       >
-        {isSubmitting || pending ? "Logging in..." : "Login"}
+        Login
       </button>
     </form>
   );

@@ -5,41 +5,88 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
-      <div className="relative w-[900px] h-[500px] rounded-xl overflow-hidden shadow-[0_0_40px_rgba(168,85,247,0.6)] border border-purple-600/30">
+    <div className="min-h-screen w-full relative overflow-hidden">
+      
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0dbb55] via-[#18c26a] to-[#bff3d4]" />
 
-        
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a0f2e] via-[#12081f] to-black" />
+      
+      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-white/15 blur-0" />
+      <div className="absolute top-[10%] -right-28 w-[520px] h-[520px] rounded-full bg-white/12 blur-0" />
+      <div className="absolute -bottom-40 left-[10%] w-[620px] h-[620px] rounded-full bg-white/18 blur-0" />
 
-        
-        <div className="absolute right-0 top-0 h-full w-[55%] bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900 clip-diagonal flex items-center justify-center text-center px-10">
-          <div>
-            <h2 className="text-4xl font-bold text-white">WELCOME BACK!</h2>
-            <p className="mt-4 text-sm text-purple-100/80">
-              Register with your personal details to use all of site features.
-            </p>
+     
+      <div className="relative z-10 min-h-screen w-full flex items-center justify-center px-4 py-10">
+       
+        <div
+          className="
+            w-full max-w-6xl
+            rounded-3xl overflow-hidden
+            bg-white/70 backdrop-blur-xl
+            shadow-2xl
+            border border-white/40
+          "
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 min-h-[640px]">
+            
+            <div className="p-8 sm:p-12 flex items-center">
+              <div className="w-full max-w-md">
+                <div className="mb-8">
+                  <h1 className="text-3xl sm:text-4xl font-bold text-green-900">
+                    Login
+                  </h1>
+                  <p className="mt-2 text-sm text-green-900/60">
+                    Welcome back! Please enter your details.
+                  </p>
+                </div>
+
+                <LoginForm />
+
+                <p className="mt-6 text-sm text-green-900/70">
+                  Don&apos;t have an account?{" "}
+                  <Link
+                    href="/register"
+                    className="font-semibold text-green-700 hover:text-green-800 hover:underline"
+                  >
+                    Sign up
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            
+            <div className="relative bg-gradient-to-br from-[#0b7f3b] via-[#0a8a40] to-[#0a6b33] text-white">
+             
+              <div className="absolute inset-0">
+                <div className="absolute -top-24 -right-24 w-[380px] h-[380px] rounded-full bg-white/10" />
+                <div className="absolute bottom-[-120px] left-[-120px] w-[420px] h-[420px] rounded-full bg-black/10" />
+              </div>
+
+              <div className="relative h-full flex items-center justify-center p-10 sm:p-14 text-center">
+                <div className="max-w-md">
+                  <h2 className="text-3xl sm:text-5xl font-extrabold leading-tight">
+                    Welcome Back!
+                  </h2>
+                  <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed">
+                    Book your futsal court instantly, get quick confirmation, and
+                    enjoy a smooth experience across Nepal.
+                  </p>
+
+                  <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                    <Link
+                      href="/"
+                      className="px-6 py-3 rounded-full bg-white text-green-800 font-semibold hover:opacity-95 transition"
+                    >
+                      Go to Home
+                    </Link>
+
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* end right */}
           </div>
         </div>
-
-        
-        <div className="relative z-10 w-[45%] h-full flex items-center px-12">
-          <div className="w-full space-y-6">
-            <h1 className="text-3xl font-semibold text-white">Login</h1>
-
-            <LoginForm />
-
-            <p className="text-sm text-white/60">
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/register"
-                className="text-purple-400 hover:underline cursor-pointer"
-              >
-                Sign up
-              </Link>
-            </p>
-          </div>
-        </div>
-
       </div>
     </div>
   );

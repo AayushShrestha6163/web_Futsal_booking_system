@@ -13,13 +13,19 @@ export const register = async (registerData: RegisterData) => {
 }
 
 export const login = async (loginData: LoginData) => {
-    try {
-        const response = await axios.post(API.AUTH.LOGIN, loginData)
-        return response.data
-    } catch (error: Error | any) {
-        throw new Error(error.response?.data?.message || error.message || 'Login failed')
-    }
-}
+  try {
+    const response = await axios.post(API.AUTH.LOGIN, loginData);
+
+    
+    return response.data; 
+  } catch (error: any) {
+    
+    return {
+      success: false,
+      message: error.response?.data?.message || error.message || "Login failed",
+    };
+  }
+};
 export const updateProfile = async (profileData: any) => {
   try {
     const response = await axios.put(
@@ -27,7 +33,7 @@ export const updateProfile = async (profileData: any) => {
       profileData,
       {
         headers: {
-          'Content-Type': 'multipart/form-data', // for file upload/multer
+          'Content-Type': 'multipart/form-data', 
         }
       }
     );
